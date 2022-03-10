@@ -6,6 +6,7 @@ class Student {
     String name;
     float percentage;
 
+    // max size of students as 100
     final static int totalCount = 100;
     static int[] rollNumberList = new int[totalCount];
     static int currentIndex = 0;
@@ -45,8 +46,7 @@ class Student {
                 if (studentList[j].percentage < studentList[j + 1].percentage) {
 
                     temp = new Student(studentList[j].rollNumber, studentList[j].name, studentList[j].percentage);
-                    studentList[j] = new Student(studentList[j + 1].rollNumber, studentList[j + 1].name,
-                            studentList[j + 1].percentage);
+                    studentList[j] = new Student(studentList[j + 1].rollNumber, studentList[j + 1].name, studentList[j + 1].percentage);
                     studentList[j + 1] = new Student(temp.rollNumber, temp.name, temp.percentage);
                     didSwap = true;
                 }
