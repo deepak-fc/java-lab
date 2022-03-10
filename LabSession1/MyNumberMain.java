@@ -1,4 +1,4 @@
-public class MyNumber {
+class MyNumber {
 
     private int number;
 
@@ -57,14 +57,17 @@ public class MyNumber {
     public boolean isZero() {
         return (this.number == 0);
     }
-    
+
     /////////////////////////////////////////////////////////////////////////////
-    // Main method to demonstrate class functionality
+    //
     /////////////////////////////////////////////////////////////////////////////
+}
+
+class MyNumberMain {
     public static void main(String[] args) {
 
         MyNumber n = new MyNumber(Integer.parseInt(args[0]));
-      
+
         System.out.println("Input number is " + n.getNumber() + "\n");
         System.out.println(n.getNumber() + " is Negative: " + n.isNegative());
         System.out.println(n.getNumber() + " is Positive: " + n.isPositive());
@@ -72,8 +75,4 @@ public class MyNumber {
         System.out.println(n.getNumber() + " is Even: " + n.isEven());
         System.out.println(n.getNumber() + " is Odd: " + n.isOdd());
     }
-
-    /////////////////////////////////////////////////////////////////////////////
-    //
-    /////////////////////////////////////////////////////////////////////////////
 }
