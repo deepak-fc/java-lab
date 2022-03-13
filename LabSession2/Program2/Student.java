@@ -1,7 +1,7 @@
 import java.io.*;
 
-import mscca1.MScCAIMarks;
-import mscca2.MScCAIIMarks;
+import MScCAI.MScCAIMarks;
+import MScCAII.MScCAIIMarks;
 
 public class Student {
 
@@ -10,8 +10,8 @@ public class Student {
     MScCAIMarks ca1;
     MScCAIIMarks ca2;
 
-    static int totalCount = 100;
-    static int[] rollNumberList = new int[totalCount];
+    static int totalCount;
+    static int[] rollNumberList;
     static int currentIndex = 0;
 
     /////////////////////////////////////////////////////////////////////////////
@@ -51,8 +51,9 @@ public class Student {
                 System.out.print(">Invalid. Enter greater than 0.");
             } else if (!isRollnumberUnique(this.rollNumber)) {
                 System.out.print(">Invalid. Already exists.");
+            
+            // adds unique roll nums to list
             } else {
-                // adds unique roll nums to list
                 Student.rollNumberList[Student.currentIndex] = this.rollNumber;
                 currentIndex++;
                 break;

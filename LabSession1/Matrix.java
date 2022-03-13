@@ -11,10 +11,10 @@ class Matrix {
         int rowSize, colSize;
         int[][] firstMatrix, secondMatrix, resultMatrix;
 
-        System.out.print("\nEnter row size: ");
+        System.out.print("\nEnter row size for both matrix: ");
         rowSize = Integer.parseInt(br.readLine());
 
-        System.out.print("Enter column size: ");
+        System.out.print("Enter column size for both matrix: ");
         colSize = Integer.parseInt(br.readLine());
 
         firstMatrix = getUserInputMatrix(rowSize, colSize);

@@ -1,4 +1,4 @@
-package mscca1;
+package MScCAI;
 
 import java.io.*;
 

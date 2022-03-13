@@ -1,6 +1,6 @@
 package numoperation;
 
-class ArmStrongNumber {
+public class ArmStrongNumber {
     public static boolean isArmstrong(int number) {
 
         int n = Integer.toString(number).length();

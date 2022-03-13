@@ -16,6 +16,10 @@ class Main {
         System.out.print("\nEnter the number of students: ");
         n = Integer.parseInt(br.readLine());
 
+        // static variables init
+        Student.totalCount = n;
+        Student.rollNumberList = new int[n];
+    
         studentList = new Student[n];
 
         for (int i = 0; i < n; i++) {

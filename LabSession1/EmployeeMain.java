@@ -68,7 +68,7 @@ class EmployeeMain {
                 salary = Float.parseFloat(br.readLine());
 
                 if (salary <= 0)
-                    System.out.println("[INVALID SALARY AMOUNT][ENTER AGAIN]\n");
+                    System.out.println(">Invalid amount. Should be greater than 0.");
                 else
                     break;
             }

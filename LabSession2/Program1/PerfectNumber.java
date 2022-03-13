@@ -1,6 +1,6 @@
 package numoperation;
 
-class PerfectNumber {
+public class PerfectNumber {
 
     public static boolean isPerfect(int number) {
         int sumOfDivisors = 0;

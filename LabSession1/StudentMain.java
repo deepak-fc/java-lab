@@ -6,9 +6,8 @@ class Student {
     String name;
     float percentage;
 
-    // max size of students as 100
-    final static int totalCount = 100;
-    static int[] rollNumberList = new int[totalCount];
+    static int totalCount;
+    static int[] rollNumberList;
     static int currentIndex = 0;
 
     /////////////////////////////////////////////////////////////////////////////
@@ -45,9 +44,9 @@ class Student {
 
                 if (studentList[j].percentage < studentList[j + 1].percentage) {
 
-                    temp = new Student(studentList[j].rollNumber, studentList[j].name, studentList[j].percentage);
-                    studentList[j] = new Student(studentList[j + 1].rollNumber, studentList[j + 1].name, studentList[j + 1].percentage);
-                    studentList[j + 1] = new Student(temp.rollNumber, temp.name, temp.percentage);
+                    temp = studentList[j];
+                    studentList[j] = studentList[j + 1];
+                    studentList[j + 1] = temp;
                     didSwap = true;
                 }
             }
@@ -71,17 +70,19 @@ class Student {
             this.rollNumber = Integer.parseInt(br.readLine());
 
             if (rollNumber <= 0) {
-                System.out.println("\n[ROLL NUMBER SHOULD BE GREATER THAN 0][ENTER AGAIN]");
+                System.out.println(">Invalid. Enter greater than 0.");
             } else if (!isRollnumberUnique(this.rollNumber)) {
-                System.out.println("\n[ROLL NUMBER ALREADY EXISTS][ENTER AGAIN]");
+                System.out.println(">Invalid. Already exists.");
+            
+            // adds unique roll nums to list    
             } else {
-                // adds unique roll nums to list
                 Student.rollNumberList[Student.currentIndex] = this.rollNumber;
                 currentIndex++;
                 break;
             }
         }
 
+        // name input
         System.out.print("Enter name: ");
         this.name = br.readLine();
 
@@ -91,7 +92,7 @@ class Student {
             this.percentage = Float.parseFloat(br.readLine());
 
             if (percentage <= 0)
-                System.out.println("\n[PERCENTAGE SHOULD BE GREATER THAN 0][ENTER AGAIN]");
+                System.out.println(">Invalid. Should be greater than 0.");
             else
                 break;
         }
@@ -130,9 +131,13 @@ class StudentMain {
         Student[] studentList;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.print("Enter the number of students: ");
+        System.out.print("\nEnter the number of students: ");
         n = Integer.parseInt(br.readLine());
 
+        // static variables init
+        Student.totalCount = n;
+        Student.rollNumberList = new int[n];
+    
         studentList = new Student[n];
 
         for (int i = 0; i < n; i++) {

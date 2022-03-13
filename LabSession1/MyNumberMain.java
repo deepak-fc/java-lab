@@ -27,7 +27,7 @@ class MyNumber {
     //
     /////////////////////////////////////////////////////////////////////////////
     public boolean isEven() {
-        return (this.number % 2) == 0;
+        return ((this.number % 2 == 0) && (this.number != 0));
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -68,11 +68,13 @@ class MyNumberMain {
 
         MyNumber n = new MyNumber(Integer.parseInt(args[0]));
 
-        System.out.println("Input number is " + n.getNumber() + "\n");
-        System.out.println(n.getNumber() + " is Negative: " + n.isNegative());
-        System.out.println(n.getNumber() + " is Positive: " + n.isPositive());
-        System.out.println(n.getNumber() + " is Zero: " + n.isZero());
-        System.out.println(n.getNumber() + " is Even: " + n.isEven());
-        System.out.println(n.getNumber() + " is Odd: " + n.isOdd());
+        if (n.isZero())
+            System.out.println("\nIt's a Zero!");
+        else {
+            System.out.println("\n" + n.getNumber() + " is Negative: " + n.isNegative());
+            System.out.println(n.getNumber() + " is Positive: " + n.isPositive());
+            System.out.println(n.getNumber() + " is Even: " + n.isEven());
+            System.out.println(n.getNumber() + " is Odd: " + n.isOdd());
+        }
     }
 }
