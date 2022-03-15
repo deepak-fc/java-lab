@@ -1,8 +1,6 @@
 import java.io.*;
 
-// Run commands
-// javac -d . MScCAIMarks.java
-// javac -d . MScCAIIMarks.java
+// To run
 // javac Main.java
 // java Main
 

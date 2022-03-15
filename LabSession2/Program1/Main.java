@@ -4,7 +4,6 @@ import numoperation.PerfectNumber;
 import numoperation.ArmStrongNumber;
 
 // To run
-// javac -d . ArmStrongNumber.java PerfectNumber.java PrimeNumber.java
 // javac Main.java
 // java Main
 
