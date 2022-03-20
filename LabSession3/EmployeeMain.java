@@ -1,15 +1,15 @@
 import java.io.*;
 
-// Have to add validations to all fields if needed later.
 class Employee {
-
-    // lab book says making these private, inheritance won't work properly so
-    // declared protected instead.
 
     protected int id;
     protected String name;
     protected String department;
     protected float salary;
+
+    static int[] registeredIds;
+    static int totalCount;
+    static int currentIndex = 0;
 
     /////////////////////////////////////////////////////////////////////////////
     //
@@ -37,14 +37,49 @@ class Employee {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n-------------INPUT EMPLOYEE-------------");
-        System.out.print("Enter Employee ID: ");
-        id = Integer.parseInt(br.readLine());
+
+        while (true) {
+            System.out.print("Enter Employee ID: ");
+            id = Integer.parseInt(br.readLine());
+
+            if (id <= 0) {
+                System.out.println(">Invalid. Enter greater than 0.");
+            } else if (!isIdUnique(id)) {
+                System.out.println(">Invalid. Already exists.");
+            } else {
+                Employee.registeredIds[Employee.currentIndex] = id;
+                currentIndex++;
+                break;
+            }
+        }
+
         System.out.print("Enter name: ");
         name = br.readLine();
+
         System.out.print("Enter department: ");
         department = br.readLine();
-        System.out.print("Enter salary: ");
-        salary = Float.parseFloat(br.readLine());
+
+        while (true) {
+            System.out.print("Enter salary: ");
+            salary = Float.parseFloat(br.readLine());
+
+            if (salary <= 0)
+                System.out.println(">Invalid amount. Should be greater than 0.");
+            else
+                break;
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    /////////////////////////////////////////////////////////////////////////////
+    static boolean isIdUnique(int id) {
+        for (int i = 0; i < Employee.totalCount; i++) {
+            if (id == Employee.registeredIds[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +101,7 @@ class Employee {
 
 class Manager extends Employee {
 
-    private float bonus;
+    private float bonusPercent;
 
     /////////////////////////////////////////////////////////////////////////////
     //
@@ -78,17 +113,17 @@ class Manager extends Employee {
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public Manager(int id, String name, String department, float salary, float bonus) {
+    public Manager(int id, String name, String department, float salary, float bonusPercent) {
 
         super(id, name, department, salary);
-        this.bonus = bonus;
+        this.bonusPercent = bonusPercent;
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public float getTotalSalary() {
-        return salary + bonus;
+    public float salaryWithBonus() {
+        return salary + (salary * ((float) bonusPercent / 100));
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -100,8 +135,15 @@ class Manager extends Employee {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         super.getUserInput();
-        System.out.print("Enter bonus: ");
-        bonus = Float.parseFloat(br.readLine());
+        while (true) {
+            System.out.print("Enter bonus percent % : ");
+            bonusPercent = Float.parseFloat(br.readLine());
+
+            if (bonusPercent <= 0)
+                System.out.println(">Invalid percent. Should be greater than 0.");
+            else
+                break;
+        }
         System.out.println("----------------------------------------\n");
     }
 
@@ -111,7 +153,7 @@ class Manager extends Employee {
     @Override
     public void display() {
         super.display();
-        System.out.println("Bonus: " + bonus);
+        System.out.println("Bonus: " + bonusPercent + "%");
         System.out.println("----------------------------------------\n");
     }
 
@@ -125,29 +167,34 @@ class EmployeeMain {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        Manager[] listManagers;
+        Manager[] groupOfManagers;
+
+        float currentMaxSalary = 0;
         int indexOfMaxSalary = 0;
         int n = 0;
-        float maxSalary = 0;
 
-        System.out.print("\nEnter the number of employees: ");
+        System.out.print("\nEnter the number of managers: ");
         n = Integer.parseInt(br.readLine());
 
-        listManagers = new Manager[n];
+        groupOfManagers = new Manager[n];
+
+        // static variables init
+        Employee.totalCount = n;
+        Employee.registeredIds = new int[n];
 
         for (int i = 0; i < n; i++) {
 
-            listManagers[i] = new Manager();
-            listManagers[i].getUserInput();
+            groupOfManagers[i] = new Manager();
+            groupOfManagers[i].getUserInput();
 
-            // records max salary employee while input
-            if (listManagers[i].getTotalSalary() > maxSalary) {
-                maxSalary = listManagers[i].getTotalSalary();
+            // records max salaried manager
+            if (groupOfManagers[i].salaryWithBonus() > currentMaxSalary) {
+                currentMaxSalary = groupOfManagers[i].salaryWithBonus();
                 indexOfMaxSalary = i;
             }
         }
 
-        // Displays employee with max salary
-        listManagers[indexOfMaxSalary].display();
+        System.out.println("----------MAX SALARIED MANAGER----------");
+        groupOfManagers[indexOfMaxSalary].display();
     }
 }

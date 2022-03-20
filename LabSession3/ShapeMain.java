@@ -1,6 +1,5 @@
 import java.io.*;
 
-// maybe will have to add validations later
 abstract class Shape {
 
     abstract double calculateArea();
@@ -34,8 +33,17 @@ class Sphere extends Shape {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n------------SPHERE INPUT--------------");
-        System.out.print("Enter radius(r): ");
-        radius = Double.parseDouble(br.readLine());
+
+        while (true) {
+            System.out.print("Enter radius(r): ");
+            radius = Double.parseDouble(br.readLine());
+
+            if (radius <= 0)
+                System.out.println(">Invalid input. Should be greater than 0.");
+            else
+                break;
+        }
+
         System.out.println("--------------------------------------\n");
     }
 
@@ -44,7 +52,7 @@ class Sphere extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     double calculateArea() {
-        return (double) 4 * Math.PI * Math.pow(radius, 2);
+        return 4 * Math.PI * Math.pow(radius, 2);
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -52,13 +60,12 @@ class Sphere extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     double calculateVolume() {
-        return ((double) 4 / 3) * Math.PI * Math.pow(radius, 3);
+        return (((double) 4 / 3) * (Math.PI * Math.pow(radius, 3)));
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-
 }
 
 class Cone extends Shape {
@@ -89,10 +96,26 @@ class Cone extends Shape {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n--------------CONE INPUT----------------");
-        System.out.print("Enter radius(r): ");
-        radius = Double.parseDouble(br.readLine());
-        System.out.print("Enter height(h): ");
-        height = Double.parseDouble(br.readLine());
+        while (true) {
+            System.out.print("Enter radius(r): ");
+            radius = Double.parseDouble(br.readLine());
+
+            if (radius <= 0)
+                System.out.println(">Invalid input. Should be greater than 0.");
+            else
+                break;
+        }
+
+        while (true) {
+            System.out.print("Enter height(h): ");
+            height = Double.parseDouble(br.readLine());
+
+            if (height <= 0)
+                System.out.println(">Invalid input. Should be greater than 0.");
+            else
+                break;
+        }
+
         System.out.println("----------------------------------------\n");
     }
 
@@ -101,7 +124,7 @@ class Cone extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     double calculateArea() {
-        return (double) Math.PI * radius * (radius + Math.sqrt((height * height) + (radius * radius)));
+        return Math.PI * radius * (radius + Math.sqrt((height * height) + (radius * radius)));
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -109,7 +132,7 @@ class Cone extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     double calculateVolume() {
-        return (double) Math.PI * Math.pow(radius, 2) * (height / 3);
+        return Math.PI * Math.pow(radius, 2) * ((double) height / 3);
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -146,10 +169,26 @@ class Cylinder extends Shape {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n------------CYLINDER INPUT--------------");
-        System.out.print("Enter radius(r): ");
-        radius = Double.parseDouble(br.readLine());
-        System.out.print("Enter height(h): ");
-        height = Double.parseDouble(br.readLine());
+
+        while (true) {
+            System.out.print("Enter radius(r): ");
+            radius = Double.parseDouble(br.readLine());
+
+            if (radius <= 0)
+                System.out.println(">Invalid input. Should be greater than 0.");
+            else
+                break;
+        }
+
+        while (true) {
+            System.out.print("Enter height(h): ");
+            height = Double.parseDouble(br.readLine());
+
+            if (height <= 0)
+                System.out.println(">Invalid input. Should be greater than 0.");
+            else
+                break;
+        }
         System.out.println("----------------------------------------\n");
     }
 
@@ -158,7 +197,7 @@ class Cylinder extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     double calculateArea() {
-        return (double) (2 * Math.PI * radius * height) + (2 * Math.PI * Math.pow(radius, 2));
+        return (2 * Math.PI * radius * height) + (2 * Math.PI * Math.pow(radius, 2));
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -166,7 +205,7 @@ class Cylinder extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     double calculateVolume() {
-        return (double) Math.PI * Math.pow(radius, 2) * (height);
+        return Math.PI * Math.pow(radius, 2) * height;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -205,12 +244,34 @@ class Box extends Shape {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n----------------BOX INPUT---------------");
-        System.out.print("Enter length(l): ");
-        length = Double.parseDouble(br.readLine());
-        System.out.print("Enter breadth(b): ");
-        breadth = Double.parseDouble(br.readLine());
-        System.out.print("Enter height(h): ");
-        height = Double.parseDouble(br.readLine());
+        while (true) {
+            System.out.print("Enter length(l): ");
+            length = Double.parseDouble(br.readLine());
+
+            if (length <= 0)
+                System.out.println(">Invalid input. Should be greater than 0.");
+            else
+                break;
+        }
+        while (true) {
+            System.out.print("Enter breadth(b): ");
+            breadth = Double.parseDouble(br.readLine());
+
+            if (breadth <= 0)
+                System.out.println(">Invalid input. Should be greater than 0.");
+            else
+                break;
+        }
+        while (true) {
+            System.out.print("Enter height(h): ");
+            height = Double.parseDouble(br.readLine());
+
+            if (height <= 0)
+                System.out.println(">Invalid input. Should be greater than 0.");
+            else
+                break;
+        }
+
         System.out.println("----------------------------------------\n");
     }
 
@@ -219,7 +280,7 @@ class Box extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     double calculateArea() {
-        return (double) (2 * length * breadth) + (2 * length * height) + (2 * breadth * height);
+        return (2 * length * breadth) + (2 * length * height) + (2 * breadth * height);
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -227,7 +288,7 @@ class Box extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     double calculateVolume() {
-        return (double) length * breadth * height;
+        return length * breadth * height;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -256,6 +317,6 @@ public class ShapeMain {
         System.out.println("\nArea of cylinder = " + String.format("%.3f", cylinder.calculateArea()) + " unit(2)");
         System.out.println("Volume of cylinder = " + String.format("%.3f", cylinder.calculateVolume()) + " unit(3)");
         System.out.println("\nArea of box = " + String.format("%.3f", box.calculateArea()) + " unit(2)");
-        System.out.println("Volume of box = " + String.format("%.3f", box.calculateVolume()) + " unit(3)");
+        System.out.println("Volume of box = " + String.format("%.3f", box.calculateVolume()) + " unit(3)\n");
     }
 }
