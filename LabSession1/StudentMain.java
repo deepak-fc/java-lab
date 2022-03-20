@@ -7,7 +7,7 @@ class Student {
     float percentage;
 
     static int totalCount;
-    static int[] rollNumberList;
+    static int[] rollNumbers;
     static int currentIndex = 0;
 
     /////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@ class Student {
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public static void sortStudents(Student[] studentList) {
+    public static void sortStudents(Student[] groupOfStudents) {
 
         Student temp;
 
@@ -40,13 +40,13 @@ class Student {
             boolean didSwap = false;
 
             // Bubble sort - descending order
-            for (int j = 0; j < studentList.length - 1; j++) {
+            for (int j = 0; j < groupOfStudents.length - 1; j++) {
 
-                if (studentList[j].percentage < studentList[j + 1].percentage) {
+                if (groupOfStudents[j].percentage < groupOfStudents[j + 1].percentage) {
 
-                    temp = studentList[j];
-                    studentList[j] = studentList[j + 1];
-                    studentList[j + 1] = temp;
+                    temp = groupOfStudents[j];
+                    groupOfStudents[j] = groupOfStudents[j + 1];
+                    groupOfStudents[j + 1] = temp;
                     didSwap = true;
                 }
             }
@@ -66,6 +66,7 @@ class Student {
 
         // roll number validation
         while (true) {
+
             System.out.print("Enter roll number: ");
             this.rollNumber = Integer.parseInt(br.readLine());
 
@@ -73,10 +74,8 @@ class Student {
                 System.out.println(">Invalid. Enter greater than 0.");
             } else if (!isRollnumberUnique(this.rollNumber)) {
                 System.out.println(">Invalid. Already exists.");
-            
-            // adds unique roll nums to list    
             } else {
-                Student.rollNumberList[Student.currentIndex] = this.rollNumber;
+                Student.rollNumbers[Student.currentIndex] = this.rollNumber;
                 currentIndex++;
                 break;
             }
@@ -104,7 +103,7 @@ class Student {
     /////////////////////////////////////////////////////////////////////////////
     static boolean isRollnumberUnique(int rollNumber) {
         for (int i = 0; i < Student.totalCount; i++) {
-            if (rollNumber == Student.rollNumberList[i]) {
+            if (rollNumber == Student.rollNumbers[i]) {
                 return false;
             }
         }
@@ -127,32 +126,33 @@ class Student {
 class StudentMain {
     public static void main(String[] args) throws IOException {
 
-        int n;
-        Student[] studentList;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        Student[] groupOfStudents;
+        int n;
 
         System.out.print("\nEnter the number of students: ");
         n = Integer.parseInt(br.readLine());
 
+        groupOfStudents = new Student[n];
+
         // static variables init
         Student.totalCount = n;
-        Student.rollNumberList = new int[n];
-    
-        studentList = new Student[n];
+        Student.rollNumbers = new int[n];
 
         for (int i = 0; i < n; i++) {
-            studentList[i] = new Student();
-            studentList[i].getUserInput();
+            groupOfStudents[i] = new Student();
+            groupOfStudents[i].getUserInput();
         }
 
         System.out.println("\n---------Before sorting--------");
         for (int i = 0; i < n; i++)
-            System.out.println(studentList[i]);
+            System.out.println(groupOfStudents[i]);
 
-        Student.sortStudents(studentList);
+        Student.sortStudents(groupOfStudents);
 
         System.out.println("\n---------After sorting---------");
         for (int i = 0; i < n; i++)
-            System.out.println(studentList[i]);
+            System.out.println(groupOfStudents[i]);
     }
 }

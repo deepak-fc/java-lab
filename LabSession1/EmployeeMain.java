@@ -44,15 +44,15 @@ class EmployeeMain {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        Employee[] listEmployee;
+        Employee[] groupOfEmployees;
         String name, designation;
         float salary;
         int n;
 
-        System.out.print("Enter the number of employees: ");
+        System.out.print("\nEnter the number of employees: ");
         n = Integer.parseInt(br.readLine());
 
-        listEmployee = new Employee[n];
+        groupOfEmployees = new Employee[n];
 
         for (int i = 0; i < n; i++) {
 
@@ -73,7 +73,7 @@ class EmployeeMain {
                     break;
             }
 
-            listEmployee[i] = new Employee(name, designation, salary);
+            groupOfEmployees[i] = new Employee(name, designation, salary);
             Employee.objectCount++;
             System.out.println("\n[Object Created] Object count: " + Employee.objectCount);
 
@@ -82,6 +82,6 @@ class EmployeeMain {
         // Displays all employees
         System.out.println("\n\n");
         for (int i = 0; i < n; i++)
-            System.out.println(listEmployee[i]);
+            System.out.println(groupOfEmployees[i]);
     }
 }

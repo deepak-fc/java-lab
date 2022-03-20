@@ -3,11 +3,12 @@ import java.io.*;
 class Matrix {
 
     /////////////////////////////////////////////////////////////////////////////
-    // Main method to demonstrate class functionality
+    //
     /////////////////////////////////////////////////////////////////////////////
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         int rowSize, colSize;
         int[][] firstMatrix, secondMatrix, resultMatrix;
 
@@ -19,12 +20,10 @@ class Matrix {
 
         firstMatrix = getUserInputMatrix(rowSize, colSize);
         secondMatrix = getUserInputMatrix(rowSize, colSize);
+        resultMatrix = addMatrix(firstMatrix, secondMatrix, rowSize, colSize);
 
         displayMatrix(firstMatrix, rowSize, colSize);
         displayMatrix(secondMatrix, rowSize, colSize);
-
-        resultMatrix = addMatrix(firstMatrix, secondMatrix, rowSize, colSize);
-
         displayMatrix(resultMatrix, rowSize, colSize);
         System.out.println("\n\n");
     }
