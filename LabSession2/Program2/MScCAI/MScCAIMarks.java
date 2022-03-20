@@ -7,8 +7,8 @@ public class MScCAIMarks {
     public int sem1Total;
     public int sem2Total;
 
-    public static int sem1MaxMarks = 600;
-    public static int sem2MaxMarks = 600;
+    public final static int sem1MaxMarks = 600;
+    public final static int sem2MaxMarks = 600;
 
     /////////////////////////////////////////////////////////////////////////////
     //
@@ -28,7 +28,7 @@ public class MScCAIMarks {
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public int getTotalMarks() {
+    public int obtainedAnnualMarks() {
         return sem1Total + sem2Total;
     }
 
@@ -44,7 +44,7 @@ public class MScCAIMarks {
             this.sem1Total = Integer.parseInt(br.readLine());
 
             if (this.sem1Total < 0 || this.sem1Total > sem1MaxMarks)
-                System.out.print(">Invalid. Enter between 0 and " + sem1MaxMarks + "\n");
+                System.out.println(">Invalid. Enter between 0 and " + sem1MaxMarks);
             else
                 break;
         }
@@ -55,7 +55,7 @@ public class MScCAIMarks {
             this.sem2Total = Integer.parseInt(br.readLine());
 
             if (this.sem2Total < 0 || this.sem2Total > sem2MaxMarks)
-                System.out.print(">Invalid. Enter between 0 and " + sem2MaxMarks + "\n");
+                System.out.println(">Invalid. Enter between 0 and " + sem2MaxMarks);
             else
                 break;
         }
