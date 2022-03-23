@@ -1,7 +1,6 @@
 import java.io.*;
 
 abstract class Staff {
-
     String name;
     String address;
 
@@ -9,7 +8,6 @@ abstract class Staff {
     //
     /////////////////////////////////////////////////////////////////////////////
     protected void getUserInput() throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n---------------INPUT STAFF--------------");
@@ -17,18 +15,15 @@ abstract class Staff {
         name = br.readLine();
         System.out.print("Enter address: ");
         address = br.readLine();
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
     protected void display() {
-
         System.out.println("\n--------------DISPLAY STAFF-------------");
         System.out.println("Name: " + name);
         System.out.println("Address: " + address);
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -37,29 +32,24 @@ abstract class Staff {
 }
 
 class FullTimeStaff extends Staff {
-
     String department;
     float salary;
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public FullTimeStaff() {
-
+    FullTimeStaff() {
         this(null, null, null, 0.0f);
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public FullTimeStaff(String name, String address, String department, float salary) {
-
+    FullTimeStaff(String name, String address, String department, float salary) {
         this.name = name;
         this.address = address;
         this.department = department;
         this.salary = salary;
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -67,10 +57,10 @@ class FullTimeStaff extends Staff {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     protected void getUserInput() throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         super.getUserInput();
+        
         System.out.print("Enter department: ");
         department = br.readLine();
 
@@ -80,20 +70,16 @@ class FullTimeStaff extends Staff {
 
             if (salary <= 0)
                 System.out.println(">Invalid amount. Should be greater than 0.");
-            else
-                break;
+            else break;
         }
-
         System.out.println("----------------------------------------");
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
     @Override
-    public void display() {
-
+    protected void display() {
         super.display();
         System.out.println("Department: " + department);
         System.out.println("Salary: " + salary);
@@ -106,27 +92,22 @@ class FullTimeStaff extends Staff {
 }
 
 class PartTimeStaff extends Staff {
-
     float numberOfHours;
     float ratePerHour;
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public PartTimeStaff() {
-
+    PartTimeStaff() {
         this(0.0f, 0.0f);
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public PartTimeStaff(float numberOfHours, float ratePerHour) {
-
+    PartTimeStaff(float numberOfHours, float ratePerHour) {
         this.numberOfHours = numberOfHours;
         this.ratePerHour = ratePerHour;
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -134,7 +115,6 @@ class PartTimeStaff extends Staff {
     /////////////////////////////////////////////////////////////////////////////
     @Override
     protected void getUserInput() throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         super.getUserInput();
@@ -145,8 +125,7 @@ class PartTimeStaff extends Staff {
 
             if (numberOfHours <= 0)
                 System.out.println(">Invalid hours. Should be greater than 0.");
-            else
-                break;
+            else break;
         }
 
         while (true) {
@@ -155,25 +134,20 @@ class PartTimeStaff extends Staff {
 
             if (ratePerHour < 0)
                 System.out.println(">Invalid amount. Should be greater than equal to 0.");
-            else
-                break;
+            else break;
         }
-
         System.out.println("----------------------------------------");
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
     @Override
-    public void display() {
-
+    protected void display() {
         super.display();
         System.out.println("Number of hours: " + numberOfHours);
         System.out.println("Rate per hour: " + ratePerHour);
         System.out.println("----------------------------------------");
-
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -181,23 +155,20 @@ class PartTimeStaff extends Staff {
     /////////////////////////////////////////////////////////////////////////////
 }
 
-public class StaffMain {
-
+class StaffMain {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         Staff[] groupOfStaff;
-        int n;
         int menuOption;
-
+        int n;
+        
         System.out.print("\nEnter the number of staff: ");
         n = Integer.parseInt(br.readLine());
 
         groupOfStaff = new Staff[n];
 
         for (int i = 0; i < n; i++) {
-
             System.out.print("\nEnter staff type -> ['1' for Full time] OR ['2' for Part time]: ");
             menuOption = Integer.parseInt(br.readLine());
 
@@ -217,14 +188,12 @@ public class StaffMain {
             }
         }
 
-        // displays full time staff
         System.out.println("\n\n-------DISPLAYING FULL TIME STAFF-------");
         for (int i = 0; i < n; i++) {
             if (groupOfStaff[i] instanceof FullTimeStaff)
                 groupOfStaff[i].display();
         }
 
-        // displays part time staff
         System.out.println("\n\n-------DISPLAYING PART TIME STAFF-------");
         for (int i = 0; i < n; i++) {
             if (groupOfStaff[i] instanceof PartTimeStaff)

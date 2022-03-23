@@ -1,35 +1,31 @@
 import java.io.*;
 
 abstract class Shape {
-
     abstract double calculateArea();
-
     abstract double calculateVolume();
 }
 
 class Sphere extends Shape {
-
     double radius;
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public Sphere() {
+    Sphere() {
         this(0.0f);
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public Sphere(double radius) {
+    Sphere(double radius) {
         this.radius = radius;
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public void getUserInput() throws IOException {
-
+    void getUserInput() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n------------SPHERE INPUT--------------");
@@ -69,21 +65,20 @@ class Sphere extends Shape {
 }
 
 class Cone extends Shape {
-
     double radius;
     double height;
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public Cone() {
+    Cone() {
         this(0.0f, 0.0f);
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public Cone(double radius, double height) {
+    Cone(double radius, double height) {
         this.radius = radius;
         this.height = height;
     }
@@ -91,8 +86,7 @@ class Cone extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public void getUserInput() throws IOException {
-
+    void getUserInput() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n--------------CONE INPUT----------------");
@@ -115,7 +109,6 @@ class Cone extends Shape {
             else
                 break;
         }
-
         System.out.println("----------------------------------------\n");
     }
 
@@ -142,7 +135,6 @@ class Cone extends Shape {
 }
 
 class Cylinder extends Shape {
-
     double radius;
     double height;
 
@@ -165,7 +157,6 @@ class Cylinder extends Shape {
     //
     /////////////////////////////////////////////////////////////////////////////
     public void getUserInput() throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n------------CYLINDER INPUT--------------");
@@ -176,8 +167,7 @@ class Cylinder extends Shape {
 
             if (radius <= 0)
                 System.out.println(">Invalid input. Should be greater than 0.");
-            else
-                break;
+            else break;
         }
 
         while (true) {
@@ -186,8 +176,7 @@ class Cylinder extends Shape {
 
             if (height <= 0)
                 System.out.println(">Invalid input. Should be greater than 0.");
-            else
-                break;
+            else break;
         }
         System.out.println("----------------------------------------\n");
     }
@@ -215,7 +204,6 @@ class Cylinder extends Shape {
 }
 
 class Box extends Shape {
-
     double length;
     double breadth;
     double height;
@@ -223,14 +211,14 @@ class Box extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public Box() {
+    Box() {
         this(0.0f, 0.0f, 0.0f);
     }
 
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public Box(double length, double breadth, double height) {
+    Box(double length, double breadth, double height) {
         this.length = length;
         this.breadth = breadth;
         this.height = height;
@@ -239,7 +227,7 @@ class Box extends Shape {
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public void getUserInput() throws IOException {
+    void getUserInput() throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -297,7 +285,7 @@ class Box extends Shape {
 
 }
 
-public class ShapeMain {
+class ShapeMain {
     public static void main(String[] args) throws IOException {
 
         Sphere sphere = new Sphere();
