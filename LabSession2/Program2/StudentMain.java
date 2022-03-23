@@ -4,7 +4,6 @@ import MScCAI.MScCAIMarks;
 import MScCAII.MScCAIIMarks;
 
 class Student {
-
     int rollNumber;
     String name;
 
@@ -27,7 +26,7 @@ class Student {
     /////////////////////////////////////////////////////////////////////////////
     public Student(int rollNumber, String name, int firstYearSem1Marks, int firstYearSem2Marks, int secondYearSem1Marks,
             int secondYearSem2Marks) {
-
+        
         this.rollNumber = rollNumber;
         this.name = name;
         firstYearData = new MScCAIMarks(firstYearSem1Marks, firstYearSem2Marks);
@@ -38,12 +37,10 @@ class Student {
     //
     /////////////////////////////////////////////////////////////////////////////
     public void getUserInput() throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\n------------------INPUT DETAILS-------------------");
 
-        // roll number validation
         while (true) {
 
             System.out.print("Enter roll number: ");
@@ -61,11 +58,9 @@ class Student {
             }
         }
 
-        // name input
         System.out.print("Enter name: ");
         this.name = br.readLine();
 
-        // marks input
         firstYearData.getUserInput();
         secondYearData.getUserInput();
     }
@@ -85,8 +80,7 @@ class Student {
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
-    public void displayResult() {
-
+    void displayResult() {
         int firstYearMaxMarks = MScCAIMarks.sem1MaxMarks + MScCAIMarks.sem2MaxMarks;
         int secondYearMaxMarks = MScCAIIMarks.sem1MaxMarks + MScCAIIMarks.sem2MaxMarks;
 
@@ -128,7 +122,6 @@ class Student {
 
 class StudentMain {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         Student[] groupOfStudents;
