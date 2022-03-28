@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 
 abstract class Staff {
     String name;
@@ -34,6 +35,16 @@ abstract class Staff {
 class FullTimeStaff extends Staff {
     String department;
     float salary;
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    /////////////////////////////////////////////////////////////////////////////
+    static FullTimeStaff[] getInstanceArray(int length) {
+        FullTimeStaff[] instanceArray = new FullTimeStaff[length];
+        Arrays.fill(instanceArray, new FullTimeStaff());
+
+        return instanceArray;
+    }
 
     /////////////////////////////////////////////////////////////////////////////
     //
@@ -99,6 +110,16 @@ class PartTimeStaff extends Staff {
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
+    static PartTimeStaff[] getInstanceArray(int length) {
+        PartTimeStaff[] instanceArray = new PartTimeStaff[length];
+        Arrays.fill(instanceArray, new PartTimeStaff());
+
+        return instanceArray;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    /////////////////////////////////////////////////////////////////////////////
     PartTimeStaff() {
         this(0.0f, 0.0f);
     }
@@ -134,8 +155,8 @@ class PartTimeStaff extends Staff {
             System.out.print("Enter rate per hour: ");
             ratePerHour = Float.parseFloat(br.readLine());
 
-            if (ratePerHour < 0)
-                System.out.println(">Invalid amount. Should be greater than equal to 0.");
+            if (ratePerHour <= 0)
+                System.out.println(">Invalid amount. Should be greater than 0.");
             else
                 break;
         }
@@ -162,35 +183,28 @@ class StaffMain {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        Boolean isProgramRunning = true;
-        Staff[] groupOfStaff;
+        Staff[] groupOfStaff = {};
+        Boolean isLoopRunning;
         int menuOption;
-        int n;
+        int n = 0;
 
-        System.out.print("\nEnter the number of staff: ");
-        n = Integer.parseInt(br.readLine());
+        displayMenu();
 
-        groupOfStaff = new Staff[n];
-
-        System.out.println("\n------------------MENU------------------");
-        System.out.println("1. All Full Time Staff");
-        System.out.println("2. All Part Time Staff");
-        System.out.println("3. Quit");
-        System.out.println("----------------------------------------");
-
-        while (isProgramRunning) {
+        isLoopRunning = true;
+        while (isLoopRunning) {
             System.out.print("\nEnter menu option: ");
             menuOption = Integer.parseInt(br.readLine());
+
             switch (menuOption) {
                 case 1:
-                    for (int i = 0; i < n; i++)
-                        groupOfStaff[i] = new FullTimeStaff();
-                    isProgramRunning = false;
+                    n = getNumberOfStaffInput();
+                    groupOfStaff = FullTimeStaff.getInstanceArray(n);
+                    isLoopRunning = false;
                     break;
                 case 2:
-                    for (int i = 0; i < n; i++)
-                        groupOfStaff[i] = new PartTimeStaff();
-                    isProgramRunning = false;
+                    n = getNumberOfStaffInput();
+                    groupOfStaff = PartTimeStaff.getInstanceArray(n);
+                    isLoopRunning = false;
                     break;
                 case 3:
                     System.out.println("\n>Quitting program...");
@@ -205,8 +219,31 @@ class StaffMain {
 
         System.out.println("\n\n");
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
             groupOfStaff[i].display();
-        }
     }
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    /////////////////////////////////////////////////////////////////////////////
+    static void displayMenu() {
+        System.out.println("\n----------OBJECT FACTORY MENU-----------");
+        System.out.println("1. Full Time Staff");
+        System.out.println("2. Part Time Staff");
+        System.out.println("3. Quit");
+        System.out.println("----------------------------------------");
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    /////////////////////////////////////////////////////////////////////////////
+    static int getNumberOfStaffInput() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("\nEnter the number of staff: ");
+        return Integer.parseInt(br.readLine());
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    /////////////////////////////////////////////////////////////////////////////
 }
