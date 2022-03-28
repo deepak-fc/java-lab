@@ -4,7 +4,7 @@ import java.util.Arrays;
 class Employee {
 
     static int[] registeredIds = {};
-    static int objectCount = 0;
+    static int currentObjectCount = 0;
 
     protected int id;
     protected String name;
@@ -34,11 +34,11 @@ class Employee {
     //
     /////////////////////////////////////////////////////////////////////////////
     Employee(int id, String name, String department, float salary) {
-        int newLengthOfRegisteredIds = ++objectCount;
-        registeredIds = Arrays.copyOf(registeredIds, newLengthOfRegisteredIds);
-
-        int lastIndex = registeredIds.length - 1;
-        registeredIds[lastIndex] = id;
+        
+        currentObjectCount++;
+        newArrayCopy = Arrays.copyOf(registeredIds, currentObjectCount);
+        registeredIds = newArrayCopy;
+        registeredIds[registeredIds.length - 1] = id;
 
         this.id = id;
         this.name = name;

@@ -60,7 +60,7 @@ class FullTimeStaff extends Staff {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         super.getUserInput();
-        
+
         System.out.print("Enter department: ");
         department = br.readLine();
 
@@ -70,7 +70,8 @@ class FullTimeStaff extends Staff {
 
             if (salary <= 0)
                 System.out.println(">Invalid amount. Should be greater than 0.");
-            else break;
+            else
+                break;
         }
         System.out.println("----------------------------------------");
     }
@@ -125,7 +126,8 @@ class PartTimeStaff extends Staff {
 
             if (numberOfHours <= 0)
                 System.out.println(">Invalid hours. Should be greater than 0.");
-            else break;
+            else
+                break;
         }
 
         while (true) {
@@ -134,7 +136,8 @@ class PartTimeStaff extends Staff {
 
             if (ratePerHour < 0)
                 System.out.println(">Invalid amount. Should be greater than equal to 0.");
-            else break;
+            else
+                break;
         }
         System.out.println("----------------------------------------");
     }
@@ -159,45 +162,51 @@ class StaffMain {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        Boolean isProgramRunning = true;
         Staff[] groupOfStaff;
         int menuOption;
         int n;
-        
+
         System.out.print("\nEnter the number of staff: ");
         n = Integer.parseInt(br.readLine());
 
         groupOfStaff = new Staff[n];
 
-        for (int i = 0; i < n; i++) {
-            System.out.print("\nEnter staff type -> ['1' for Full time] OR ['2' for Part time]: ");
-            menuOption = Integer.parseInt(br.readLine());
+        System.out.println("\n------------------MENU------------------");
+        System.out.println("1. All Full Time Staff");
+        System.out.println("2. All Part Time Staff");
+        System.out.println("3. Quit");
+        System.out.println("----------------------------------------");
 
+        while (isProgramRunning) {
+            System.out.print("\nEnter menu option: ");
+            menuOption = Integer.parseInt(br.readLine());
             switch (menuOption) {
                 case 1:
-                    groupOfStaff[i] = new FullTimeStaff();
-                    groupOfStaff[i].getUserInput();
+                    for (int i = 0; i < n; i++)
+                        groupOfStaff[i] = new FullTimeStaff();
+                    isProgramRunning = false;
                     break;
                 case 2:
-                    groupOfStaff[i] = new PartTimeStaff();
-                    groupOfStaff[i].getUserInput();
+                    for (int i = 0; i < n; i++)
+                        groupOfStaff[i] = new PartTimeStaff();
+                    isProgramRunning = false;
                     break;
+                case 3:
+                    System.out.println("\n>Quitting program...");
+                    System.exit(0);
                 default:
                     System.out.println(">Invalid menu option. Enter again.");
-                    i--;
-                    break;
             }
         }
 
-        System.out.println("\n\n-------DISPLAYING FULL TIME STAFF-------");
-        for (int i = 0; i < n; i++) {
-            if (groupOfStaff[i] instanceof FullTimeStaff)
-                groupOfStaff[i].display();
-        }
+        for (int i = 0; i < n; i++)
+            groupOfStaff[i].getUserInput();
 
-        System.out.println("\n\n-------DISPLAYING PART TIME STAFF-------");
+        System.out.println("\n\n");
+
         for (int i = 0; i < n; i++) {
-            if (groupOfStaff[i] instanceof PartTimeStaff)
-                groupOfStaff[i].display();
+            groupOfStaff[i].display();
         }
     }
 }
