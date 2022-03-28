@@ -6,9 +6,10 @@ class Employee {
     static int[] registeredIds = {};
     static int currentObjectCount = 0;
 
-    protected int id;
-    protected String name;
-    protected String department;
+    private int id;
+    private String name;
+    private String department;
+    
     protected float salary;
 
     /////////////////////////////////////////////////////////////////////////////
@@ -34,10 +35,9 @@ class Employee {
     //
     /////////////////////////////////////////////////////////////////////////////
     Employee(int id, String name, String department, float salary) {
-        
         currentObjectCount++;
-        newArrayCopy = Arrays.copyOf(registeredIds, currentObjectCount);
-        registeredIds = newArrayCopy;
+        int[] newArray = Arrays.copyOf(registeredIds, currentObjectCount);
+        registeredIds = newArray;
         registeredIds[registeredIds.length - 1] = id;
 
         this.id = id;
@@ -45,7 +45,7 @@ class Employee {
         this.department = department;
         this.salary = salary;
     }
-
+    
     /////////////////////////////////////////////////////////////////////////////
     //
     /////////////////////////////////////////////////////////////////////////////
