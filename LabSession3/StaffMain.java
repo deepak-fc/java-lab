@@ -188,39 +188,40 @@ class StaffMain {
         int menuOption;
         int n = 0;
 
-        displayMenu();
+        while (true) {
+            displayMenu();
+            isLoopRunning = true;
+            while (isLoopRunning) {
+                System.out.print("\nEnter menu option: ");
+                menuOption = Integer.parseInt(br.readLine());
 
-        isLoopRunning = true;
-        while (isLoopRunning) {
-            System.out.print("\nEnter menu option: ");
-            menuOption = Integer.parseInt(br.readLine());
-
-            switch (menuOption) {
-                case 1:
-                    n = getNumberOfStaffInput();
-                    groupOfStaff = FullTimeStaff.getInstanceArray(n);
-                    isLoopRunning = false;
-                    break;
-                case 2:
-                    n = getNumberOfStaffInput();
-                    groupOfStaff = PartTimeStaff.getInstanceArray(n);
-                    isLoopRunning = false;
-                    break;
-                case 3:
-                    System.out.println("\n>Quitting program...");
-                    System.exit(0);
-                default:
-                    System.out.println(">Invalid menu option. Enter again.");
+                switch (menuOption) {
+                    case 1:
+                        n = getNumberOfStaffInput();
+                        groupOfStaff = FullTimeStaff.getInstanceArray(n);
+                        isLoopRunning = false;
+                        break;
+                    case 2:
+                        n = getNumberOfStaffInput();
+                        groupOfStaff = PartTimeStaff.getInstanceArray(n);
+                        isLoopRunning = false;
+                        break;
+                    case 3:
+                        System.out.println("\n>Quitting program...");
+                        System.exit(0);
+                    default:
+                        System.out.println(">Invalid menu option. Enter again.");
+                }
             }
+
+            for (int i = 0; i < n; i++)
+                groupOfStaff[i].getUserInput();
+
+            System.out.println("\n\n");
+
+            for (int i = 0; i < n; i++)
+                groupOfStaff[i].display();
         }
-
-        for (int i = 0; i < n; i++)
-            groupOfStaff[i].getUserInput();
-
-        System.out.println("\n\n");
-
-        for (int i = 0; i < n; i++)
-            groupOfStaff[i].display();
     }
 
     /////////////////////////////////////////////////////////////////////////////
