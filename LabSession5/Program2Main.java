@@ -5,8 +5,6 @@ class Program2Main {
         String filePath = args[0];
         File f = new File(filePath);
 
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-
         int numberOfLines = 0;
         int numberOfCharacters = 0;
         int numbersOfWords = 0;
@@ -15,8 +13,10 @@ class Program2Main {
             System.out.println(">Invalid argument. Please pass file name instead of directory.");
 
         } else if (f.isFile()) {
-            String line;
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+
             String[] words = {};
+            String line;
 
             while ((line = br.readLine()) != null) {
                 numberOfLines++;
