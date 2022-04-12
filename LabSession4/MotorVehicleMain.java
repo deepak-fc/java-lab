@@ -165,38 +165,69 @@ class MotorVehicleMain {
         Vehicle[] vehicles;
         int menuOption;
         int n;
+        boolean isLoopRunning;
 
-        System.out.print("\nEnter number of vehicles: ");
-        n = Integer.parseInt(br.readLine());
-
-        vehicles = new Vehicle[n];
-
-        for (int i = 0; i < n; i++) {
-            displayVehicleTypeMenu();
+        while (true) {
+            displayMainMenu();
             System.out.print("\nEnter menu option: ");
             menuOption = Integer.parseInt(br.readLine());
 
-            switch (menuOption) {
-                case 1:
-                    vehicles[i] = new LightMotorVehicle();
-                    vehicles[i].getUserInput();
-                    break;
-                case 2:
-                    vehicles[i] = new HeavyMotorVehicle();
-                    vehicles[i].getUserInput();
-                    break;
-                case 3:
-                    System.out.println(">Exiting program...");
-                    System.exit(0);
-                default:
-                    System.out.println(">Invalid option. Please enter again.");
-                    i--;
+            isLoopRunning = true;
+            while(isLoopRunning){
+                switch (menuOption) {
+                    case 1:
+                        isLoopRunning = false;
+                        break;
+                    case 2:
+                        System.out.println(">Exiting program...");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println(">Invalid option. Please enter again.");
+                }    
             }
-        }
 
-        System.out.println("\n\n");
-        for (Vehicle v : vehicles)
-            v.display();
+            System.out.print("\nEnter number of vehicles: ");
+            n = Integer.parseInt(br.readLine());
+            vehicles = new Vehicle[n];
+
+            for (int i = 0; i < n; i++) {
+                displayVehicleTypeMenu();
+                System.out.print("\nEnter menu option: ");
+                menuOption = Integer.parseInt(br.readLine());
+
+                switch (menuOption) {
+                    case 1:
+                        vehicles[i] = new LightMotorVehicle();
+                        vehicles[i].getUserInput();
+                        break;
+                    case 2:
+                        vehicles[i] = new HeavyMotorVehicle();
+                        vehicles[i].getUserInput();
+                        break;
+                    case 3:
+                        System.out.println(">Exiting program...");
+                        System.exit(0);
+                    default:
+                        System.out.println(">Invalid option. Please enter again.");
+                        i--;
+                }
+            }
+
+            System.out.println("\n\n");
+            for (Vehicle v : vehicles)
+                v.display();
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    /////////////////////////////////////////////////////////////////////////////
+    static void displayMainMenu() {
+        System.out.println("\n---------------MAIN MENU----------------");
+        System.out.println("1. Start Program");
+        System.out.println("2. Exit Program");
+        System.out.println("----------------------------------------");
     }
 
     /////////////////////////////////////////////////////////////////////////////
