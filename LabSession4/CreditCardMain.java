@@ -189,7 +189,7 @@ class CreditCardMain {
         boolean isNestedLoopActive;
 
         SilverCardCustomer customer = new SilverCardCustomer();
-        
+
         while (true) {
             displayChooseCardMenu();
             isLoopActive = true;
@@ -230,6 +230,12 @@ class CreditCardMain {
                         customer.useCard(amountToSpend);
                         break;
                     case 3:
+                        
+                        if (customer.creditAmount == 0) {
+                            System.out.println(">No dues to pay. Spend on something and come back later.");
+                            break;
+                        }
+                
                         isNestedLoopActive = true;
                         while (isNestedLoopActive) {
                             displayCreditPaymentTypeMenu();
@@ -268,8 +274,15 @@ class CreditCardMain {
                     case 4:
                         float amountToIncrease = 0;
                         if (customer instanceof GoldCardCustomer) {
-                            System.out.print("Enter amount to increase limit: ");
-                            amountToIncrease = Float.parseFloat(br.readLine());
+                            if (((GoldCardCustomer) customer).hasIncreasedCreditLimit >= 3) {
+                                System.out.println(">Already increased 3 times. Attempts exceeded.");
+                                break;
+                            } else {
+                                System.out.print("Enter amount to increase limit: ");
+                                amountToIncrease = Float.parseFloat(br.readLine());
+                                customer.increaseLimit(amountToIncrease);
+                                break;
+                            }
                         }
                         customer.increaseLimit(amountToIncrease);
                         break;
