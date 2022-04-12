@@ -32,6 +32,7 @@ class Program2Main {
             System.out.println("=> Total number of characters: " + numberOfCharacters);
             System.out.println("=> Total number of words: " + numbersOfWords);
 
+            br.close();
         } else {
             System.out.println(">Invalid file path. Failed to read.");
         }

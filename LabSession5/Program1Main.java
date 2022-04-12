@@ -24,7 +24,7 @@ class Program1Main {
         File[] contents = dir.listFiles();
         System.out.println("\n=> Contents");
         for (File file : contents)
-            System.out.println(">" + file.getCanonicalPath());
+            System.out.println(">" + file.getPath());
     }
 
     /////////////////////////////////////////////////////////////////////////////
